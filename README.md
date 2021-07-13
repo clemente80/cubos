@@ -1,18 +1,62 @@
-![image](https://user-images.githubusercontent.com/70956778/105875179-3f0a1000-5fdc-11eb-8547-dbd2bca88f76.png)
+Desafio técnico web - processo seletivo da Cubos
 
-# Before executing you need to make sure to type a line code in the command:
 
-### `json-server --watch films.json --port 3000`
+Objetivo
+Implementar um web app responsivo que consuma a API do The Movie DB e permita buscar e ver detalhes de filmes de seu catálogo.
 
-# Getting Started with Create React App
+Especificações
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Especificações obrigatórias
+O web app deve:
 
-## Available Scripts
+Ter as seguintes funcionalidades:
 
-In the project directory, you can run:
+Permitir buscar filmes por nome ou gênero
+Resultados de busca paginados, 5 por página
+Exibir nos resultados da busca: nome, cartaz, data de lançamento, sinopse, pontuação do filme e categorias
+Possa ver, ao clicar em um resultado da busca, detalhes do filme além dos mostrados na busca, como: status (lançado, previsto, etc), idioma, duração, orçamento, receita, lucro, categorias e trailer, quando disponíveis.
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Ser responsivo
+Ter boa performance
+Funcionar na última versão dos principais browsers (Chrome, Firefox, Safari e Edge)
+Reproduzir os layouts a seguir:
+
+
+Resultados de busca:
+
+
+
+
+Detalhes de filme:
+
+
+Vale citar que as fontes usadas nos layouts foram Abel e Lato.
+O web app não pode:
+
+Fazer uso de frameworks CSS, como Bootstrap e Foundation
+
+
+Especificações adicionais
+As especificações a seguir não são obrigatórias, mas contam pontos extras:
+
+Ter HTML semântico
+Fazer uso de técnicas avançadas em CSS, HTML e Javascript
+Demonstrar domínio de features modernas (ES6+) do Javascript
+Ser um PWA
+Fizer uso de uma ou mais das seguintes ferramentas:
+
+React, Vue, Angular ou similares
+Typescript, Flow ou similares
+Redux, MobX ou similares
+
+
+
+
+Entrega
+O projeto do desafio técnico deve ser entregue em um dos seguintes formatos:
+
+Repositório hospedado (Github, Gitlab, Bitbucket ou similares)
+Arquivo compactado
+
+Em ambos os casos, deve constar no projeto um arquivo chamado README.md com instruções para a compilação/execução do web app.
