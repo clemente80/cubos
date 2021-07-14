@@ -4,9 +4,9 @@ import {Content} from './styles'
 const HeaderComponent: React.FC = () => {
     return(
         <Content>
-            Header
+            Movies
         </Content>
     )
 }
 
-export default HeaderComponent
+export default HeaderComponent;

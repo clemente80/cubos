@@ -3,9 +3,20 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex-basis: 100%;
-  height: 100vh;
+  background: #000;
+  min-height: 100vh;
+  // height: 100%;
   color: #fff;
-  box-sizing: border-box;
 `
+
+// export const Header = styled.div`
+//   flex: 0;
+// `
+
+// export const Content = styled.div`
+//   flex: 1;
+// `
+
+// export const Footer = styled.div`
+//   flex: 0;
+// `
