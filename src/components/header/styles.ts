@@ -6,6 +6,7 @@ export const Content = styled.div`
   position: relative;
   width: 1024px;
   margin: 0 auto;
+  padding: 16px 0;
   height: 80px;
   display: flex;
   justify-content: center;

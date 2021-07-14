@@ -17,25 +17,32 @@ export const FooterPages = styled.div`
         list-style: none;
         font-family: 'Abel';
         color: #116193;
-        margin-right: 20px;
+        margin-right: 5px;
         font-size: 22px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        transition: .2s ease-in-out;
 
-        :last-child {
-            margin-right: 0;
+        :hover {
+            background: #eee;
         }
     }
 
     .active {
         position: relative;
-        background: #116193;
         width: 55px;
         height: 55px;
         font-size: 26px;
+        background: #116193;
         color: #00e8e4;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
+        cursor: default;
 
         :after {
             content: '';
@@ -48,6 +55,10 @@ export const FooterPages = styled.div`
             background: transparent;
             border: 4px solid #00e8e4;
             border-radius: 50%;
-          }
+        }
+
+        :hover {
+            background: #116193;
+        }
     }
 `
