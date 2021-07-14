@@ -18,7 +18,9 @@ const Content: React.FC = () => {
         <ContentSearch>
             <InputSearch placeholder='Busque um filme por nome, ano ou gênero...' />
             <CardSearched>
-                <PoserCard style={{backgroundImage: `url(${poser1})`}}/>
+                <PoserCard>
+                    <div style={{backgroundImage: `url(${poser1})`}}></div>
+                </PoserCard>
                 <DescriptionCard>
                     <TitleCard><span>Thor: Ragnarok</span><span>75%</span></TitleCard>
                     <SynopsisCard>
@@ -35,7 +37,9 @@ const Content: React.FC = () => {
                 </DescriptionCard>
             </CardSearched>
             <CardSearched>
-                <PoserCard style={{backgroundImage: `url(${poser2})`}}/>
+                <PoserCard>
+                    <div className='poserC' style={{backgroundImage: `url(${poser2})`}}></div>
+                </PoserCard>
                 <DescriptionCard>
                     <TitleCard><span>Mulher-Maravilha</span><span>73%</span></TitleCard>
                     <SynopsisCard>
@@ -52,7 +56,9 @@ const Content: React.FC = () => {
                 </DescriptionCard>
             </CardSearched>
             <CardSearched>
-                <PoserCard style={{backgroundImage: `url(${poser3})`}}/>
+                <PoserCard>
+                    <div style={{backgroundImage: `url(${poser3})`}}></div>
+                </PoserCard>
                 <DescriptionCard>
                     <TitleCard><span>Os Vingadores: The Avengers</span><span>77%</span></TitleCard>
                     <SynopsisCard>

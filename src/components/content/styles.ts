@@ -37,15 +37,34 @@ export const CardSearched = styled.section`
   background: #ebebeb;
   margin-top: 50px;
   display: flex;
+  cursor: pointer;
+
+  :hover {
+    && > .poserC {
+      transform: scale(1.05);
+    }
+  } 
 `
 
 export const PoserCard = styled.div`
-  background: transparent;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
   width: 205px;
   height: 308px;
+  overflow: hidden;
+
+  div {
+    background: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: .4s ease-in-out;
+    cursor: pointer;
+
+    :hover {
+      transform: scale(1.05);
+    }
+  }
 `
 
 export const DescriptionCard = styled.div`

@@ -27,7 +27,7 @@ export const FooterPages = styled.div`
         transition: .2s ease-in-out;
 
         :hover {
-            background: #eee;
+            background: #ebebeb;
         }
     }
 
