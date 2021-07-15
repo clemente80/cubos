@@ -18,16 +18,15 @@ export const InputSearch = styled.input`
   width: 100%;
   border: 0;
   border-radius: 20px;
-  color: #91b2c7;
-  padding 10px 0;
-  // padding-left: 20px;
+  color: #116193;
+  padding: 10px 20px;
+  box-sizing: border-box;
   font-family: 'Abel', sans-serif;
   font-size: 18px;
   outline: none;
 
   ::placeholder {
     color: #91b2c7;
-    padding-left: 25px;
   }
 `
 
@@ -38,12 +37,6 @@ export const CardSearched = styled.section`
   margin-top: 50px;
   display: flex;
   cursor: pointer;
-
-  :hover {
-    && > .poserC {
-      transform: scale(1.05);
-    }
-  } 
 `
 
 export const PoserCard = styled.div`
@@ -61,7 +54,7 @@ export const PoserCard = styled.div`
     transition: .4s ease-in-out;
     cursor: pointer;
 
-    :hover {
+    ${CardSearched}:hover & {
       transform: scale(1.05);
     }
   }
@@ -71,6 +64,7 @@ export const DescriptionCard = styled.div`
   background: #ebebeb;
   width: 78%;
   heigth: 100%;
+  overflow: hidden;
 `
 
 export const TitleCard = styled.div`
@@ -79,6 +73,7 @@ export const TitleCard = styled.div`
   background: #116193;
   color: #00e8e4;
   font-family: 'Abel', sans-serif;
+  line-height: 50px;
 
   span {
     position: absolute;

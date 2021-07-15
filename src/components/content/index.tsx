@@ -1,7 +1,7 @@
-import React from 'react'
-import poser1 from './../../assets/cartaz01.png'
-import poser2 from './../../assets/cartaz02.png'
-import poser3 from './../../assets/cartaz03.png'
+import React, { useState,useEffect } from 'react'
+// import poser1 from './../../assets/cartaz01.png'
+// import poser2 from './../../assets/cartaz02.png'
+// import poser3 from './../../assets/cartaz03.png'
 import {
         ContentSearch,
         InputSearch,
@@ -12,21 +12,48 @@ import {
         SynopsisCard
 } from './styles'
 
-const Content: React.FC = () => {  
+interface IMovie {
+    id: number,
+    poster_path: string,
+    title: string,
+    overview: string,
+    release_date: number,
+    vote_average: number
+}
+
+const Content: React.FC = () => {
+
+    const [dataMovie, setDataMovie] = useState<IMovie[]>([])
+
+    const url = 'https://api.themoviedb.org/3/discover/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2021&with_watch_monetization_types=flatrate'
+
+    useEffect(() => {
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setDataMovie(data.results)
+        })
+        .catch(err => console.error(err))
+    }, []);
+
+    // function percentage(vote:any) {
+    //     let x = Math.round((vote * 1)/10);     
+    // }
 
     return(
         <ContentSearch>
             <InputSearch placeholder='Busque um filme por nome, ano ou gênero...' />
-            <CardSearched>
+            {dataMovie.map(myMovie => (
+                <CardSearched key={myMovie.id}>
                 <PoserCard>
-                    <div style={{backgroundImage: `url(${poser1})`}}></div>
+                    <div style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${myMovie.poster_path})`}}></div>
                 </PoserCard>
                 <DescriptionCard>
-                    <TitleCard><span>Thor: Ragnarok</span><span>75%</span></TitleCard>
+                    <TitleCard><span>{myMovie.title}</span><span>{Math.round(myMovie.vote_average/0.1)}%</span></TitleCard>
                     <SynopsisCard>
-                        <div className='dateRelease'>25/10/2017</div>
-                        <div className='synopsisMovie'>
-                        Thor está aprisionado do outro lado do universo, sem seu martelo, e se vê em uma corrida para voltar até Asgard e impedir o Ragnarok, a destruição de seu lar e o fim da civilização asgardiana que está nas mãos de uma nova e poderosa ameaça, a terrível Hela. Mas primeiro ele precisa sobreviver a uma batalha de gladiadores que coloca contra seu ex-aliado vingador, o Incrível Hulk.
+                        <div className='dateRelease'>{myMovie.release_date}</div>
+                        <div className='synopsisMovie'>{myMovie.overview}
                         </div>
                         <div className='categoriesMovie'>
                             <li>Ação</li>
@@ -36,44 +63,7 @@ const Content: React.FC = () => {
                     </SynopsisCard>
                 </DescriptionCard>
             </CardSearched>
-            <CardSearched>
-                <PoserCard>
-                    <div className='poserC' style={{backgroundImage: `url(${poser2})`}}></div>
-                </PoserCard>
-                <DescriptionCard>
-                    <TitleCard><span>Mulher-Maravilha</span><span>73%</span></TitleCard>
-                    <SynopsisCard>
-                        <div className='dateRelease'>30/05/2017</div>
-                        <div className='synopsisMovie'>
-                        Treinada desde cedo para ser uma guerreira imbatível, Diana Prince (Gal Gadot) nunca saiu da paradisíaca ilha em que é reconhecida como Princesa das Amazonas. Quando o piloto Steve Trevor (Chris Pine) se acidenta e cai numa praia do local, ela descobre que uma guerra sem precedentes está se espalhando pelo mundo e decide deixar seu lar certa de que pode parar o conflito. Lutando para acabar com todas as lutas, Diana percebe o alcance de seus poderes e sua verdadeira missão na Terra.
-                        </div>
-                        <div className='categoriesMovie'>
-                            <li>Ação</li>
-                            <li>Aventura</li>
-                            <li>Fantasia</li>
-                        </div>
-                    </SynopsisCard>
-                </DescriptionCard>
-            </CardSearched>
-            <CardSearched>
-                <PoserCard>
-                    <div style={{backgroundImage: `url(${poser3})`}}></div>
-                </PoserCard>
-                <DescriptionCard>
-                    <TitleCard><span>Os Vingadores: The Avengers</span><span>77%</span></TitleCard>
-                    <SynopsisCard>
-                        <div className='dateRelease'>25/10/2012</div>
-                        <div className='synopsisMovie'>
-                        Loki, o irmão de Thor, ganha acesso ao poder ilimitado do cubo cósmico ao roubá-lo de dentro das instalações da S.H.I.E.L.D. Nick Fury, o diretor desta agência internacional que mantém a paz, logo reúne os únicos super-heróis que serão capazes de defender a Terra de ameaças sem precedentes. Homem de Ferro, Capitão América, Hulk, Thor, Viúva Negra e Gavião Arqueiro formam o time dos sonhos de Fury, mas eles precisam aprender a colocar os egos de lado e agir como um grupo em prol da humanidade.
-                        </div>
-                        <div className='categoriesMovie'>
-                            <li>Ficção Científica</li>
-                            <li>Aventura</li>
-                            <li>Fantasia</li>
-                        </div>
-                    </SynopsisCard>
-                </DescriptionCard>
-            </CardSearched>
+            ))}            
         </ContentSearch>
     )
 }
