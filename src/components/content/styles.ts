@@ -33,10 +33,29 @@ export const InputSearch = styled.input`
 export const CardSearched = styled.section`
   width: 100%;
   height: 308px;
-  background: #ebebeb;
+  background: ${props => props.theme.fg};
   margin-top: 50px;
   display: flex;
   cursor: pointer;
+  transition: .4s ease-in-out;
+  animation: animeCard .24s;
+
+
+  :hover {
+    box-shadow: 0 5px 15px rgba(17, 97, 147, .35);
+  }
+
+  @keyframes animeCard {
+    from {
+      transform: scale(.95);
+      opacity: .5;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
 `
 
 export const PoserCard = styled.div`
@@ -126,9 +145,24 @@ export const SynopsisCard = styled.div`
   }
 
   .synopsisMovie {
+    position: relative;
     padding: 50px 30px 15px 30px;
+    margin-bottom: 10px;
+    height: 130px;
     font-family: 'Lato';
     font-size: 17px;
+    // background: rgb(17,97,147);
+    overflow: hidden;
+
+    :after {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(transparent, #ebebeb);
+    }
   }
 
   .categoriesMovie {
