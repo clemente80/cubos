@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
 import {
         ContentSearch,
         InputSearch,
@@ -21,10 +22,15 @@ interface IMovie {
 const Content: React.FC = () => {
 
     const [dataMovie, setDataMovie] = useState<IMovie[]>([])
+    const history = useHistory()
 
-    // const HandleSearch = useCallback(() => {
-        
-    // }, [])
+    const HandleOpenMovie = useCallback((id) => {
+        history.push({
+            pathname: `/filme/${id}`,
+            state: id
+        });
+        console.log(id)
+    }, [history])
 
     const HandleSearch = (e:any) => {
         var movieName = e.target.value
@@ -34,7 +40,6 @@ const Content: React.FC = () => {
         fetch(urlSrch)
         .then(resp => resp.json())
         .then(data1 => {
-            console.log(data1.results)
             if (data1.results !== undefined) {
                 setDataMovie(data1.results)
             }
@@ -80,7 +85,7 @@ const Content: React.FC = () => {
         <ContentSearch>
             <InputSearch placeholder='Busque um filme por nome, ano ou gênero...' onChange={HandleSearch}/>
             {dataMovie.map(myMovie => (
-                <CardSearched key={myMovie.id} theme={theme}>
+                <CardSearched key={myMovie.id} theme={theme} onClick={() => HandleOpenMovie(myMovie.id)}>
                     <PoserCard>
                         <div style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${myMovie.poster_path})`}}></div>
                     </PoserCard>
