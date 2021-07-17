@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const FooterPages = styled.div`
     background: #fff;
-    width: 1024px;
+    max-width: 1024px;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
     padding: 50px 0;

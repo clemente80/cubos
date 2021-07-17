@@ -5,7 +5,8 @@ export const ContentSearch = styled.div`
   position: relative;
   background: #fff;
   color: #000;
-  width: 1024px;
+  max-width: 1024px;
+  width: 100%;
   margin: 0px auto;
   padding: 50px;
   height: 100%;

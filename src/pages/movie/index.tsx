@@ -1,6 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import {MovieId, LoadingComponent} from './styles'
+import {
+    Container,
+    MovieId,
+    TitleMov,
+    ReleaseDate,
+    DescrMovie,
+    Infos,
+    PosterMovie,
+    Trailer,
+    LoadingComponent
+} from './styles'
 // import LoadingComponent from './.../../../../components/loading'
 // import useToast
 
@@ -41,6 +51,7 @@ const Movie: React.FC = () => {
         fetch(url)
         .then(resp => resp.json())
         .then(data => {
+            console.log(data)
             setMovieDetail(data)
             setLoading(false)
         })
@@ -48,16 +59,57 @@ const Movie: React.FC = () => {
     }, [])
 
     return (
-        <MovieId>
+        <Container>
             {!loading?
                 <>
-                <span>{movieDetail?.id}</span>
-                <span>{movieDetail?.title}</span>
+                <MovieId>
+                    <div className='movieTitle'>
+                        <TitleMov>{movieDetail?.title}</TitleMov>
+                        <ReleaseDate>{movieDetail?.release_date}</ReleaseDate>
+                    </div>
+                    <div className='contentMovie'>
+                        <DescrMovie>
+                            <span className='subTitle'>Sinopse</span>
+                            <span>{movieDetail?.overview}</span>
+                            <span className='subTitle'>Informações</span>
+                            <Infos>
+                                <section>
+                                    <span>Situação</span>
+                                    <span>Lançado</span>
+                                </section>
+                                <section>
+                                    <span>Idionma</span>
+                                    <span>Inglês</span>
+                                </section>
+                                <section>
+                                    <span>Duração</span>
+                                    <span>2h10min</span>
+                                </section>
+                            </Infos>
+                            <Infos>
+                                <section>
+                                    <span>Orçamento</span>
+                                    <span>$ 180.000.000,00</span>
+                                </section>
+                                <section>
+                                    <span>Receita</span>
+                                    <span>$ 853.977.000,00</span>
+                                </section>
+                                <section>
+                                    <span>Lucro</span>
+                                    <span>$ 673.977.000,00</span>
+                                </section>
+                            </Infos>
+                        </DescrMovie>
+                        <PosterMovie style={{backgroundImage: `url('https://image.tmdb.org/t/p/w500${movieDetail?.poster_path}')`}}></PosterMovie>
+                    </div>
+                </MovieId>
+                <Trailer />
                 </>
                 :
                 <LoadingComponent/>
             }
-        </MovieId>
+        </Container>
     )
 }
 

@@ -4,7 +4,7 @@ export const Content = styled.div`
   Flex: 0;
   background: #116193;
   position: relative;
-  width: 1024px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 16px 0;
   height: 80px;
