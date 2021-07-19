@@ -9,6 +9,7 @@ import {
         TitleCard,
         SynopsisCard
 } from './styles'
+// import Moment from 'react-moment'
 
 interface IMovie {
     id: number,
@@ -79,7 +80,6 @@ const Content: React.FC = () => {
         fg: "palevioletred",
         bg: "white"
     };
-      
 
     return(
         <ContentSearch>
@@ -92,6 +92,7 @@ const Content: React.FC = () => {
                     <DescriptionCard>
                         <TitleCard><span>{myMovie.title}</span><span>{Math.round(myMovie.vote_average/0.1)}%</span></TitleCard>
                         <SynopsisCard>
+                            {/* <Moment>{myMovie.release_date}</Moment> */}
                             <div className='dateRelease'>{myMovie.release_date}</div>
                             <div className='synopsisMovie'>{myMovie.overview}
                             </div>

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect,useCallback } from 'react'
+import { parse } from 'url';
 import {
     Container,
     MovieId,
@@ -25,6 +25,7 @@ const Movie: React.FC = () => {
         imdb_id: string,
         original_title: string,
         overview: string,
+        original_language: string,
         popularity: number,
         poster_path: string,
         release_date: number,
@@ -40,12 +41,16 @@ const Movie: React.FC = () => {
         vote_count: number
     }
 
-    const [movieDetail, setMovieDetail] = useState<IMovie>()
-    const [loading, setLoading] = useState(true)
+    const [movieDetail, setMovieDetail] = useState<IMovie>();
+    const [loading, setLoading] = useState(true);
+    // const [value, setValue] = useState(Number);
+
+    // const calcLucre = useCallback(() => {
+    //     setValue(parseInt(movieDetail?.budget - movieDetail?.revenue));
+    // }, [value])
 
     useEffect(() => {
-
-        let id = document.URL.substring(document.URL.lastIndexOf('/') + 1)
+        let id = document.URL.substring(document.URL.lastIndexOf('/') + 1);
         let url = 'https://api.themoviedb.org/3/movie/'+id+'?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR'
         
         fetch(url)
@@ -75,29 +80,29 @@ const Movie: React.FC = () => {
                             <Infos>
                                 <section>
                                     <span>Situação</span>
-                                    <span>Lançado</span>
+                                    <span>{movieDetail?.status}</span>
                                 </section>
                                 <section>
-                                    <span>Idionma</span>
-                                    <span>Inglês</span>
+                                    <span>Idioma</span>
+                                    <span>{movieDetail?.original_language}</span>
                                 </section>
                                 <section>
                                     <span>Duração</span>
-                                    <span>2h10min</span>
+                                    <span>{movieDetail?.runtime}</span>
                                 </section>
-                            </Infos>
-                            <Infos>
+                                </Infos>
+                                <Infos>
                                 <section>
                                     <span>Orçamento</span>
-                                    <span>$ 180.000.000,00</span>
+                                    <span>$ {movieDetail?.budget}</span>
                                 </section>
                                 <section>
                                     <span>Receita</span>
-                                    <span>$ 853.977.000,00</span>
+                                    <span>$ {movieDetail?.revenue}</span>
                                 </section>
                                 <section>
                                     <span>Lucro</span>
-                                    <span>$ 673.977.000,00</span>
+                                    <span>$ {parseInt('300000000')}</span>
                                 </section>
                             </Infos>
                         </DescrMovie>

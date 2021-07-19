@@ -69,7 +69,23 @@ export const DescrMovie = styled.section`
 
 export var Infos = styled.div`
     display: flex;
-    
+    flex-direction: row;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        width: 33.33%;
+        // font-size: 7px;
+
+        span:first-child {
+            font-family: 'Abel', sans-serif;
+            color: #116193;
+        }
+
+        span: last-child {
+            // font-size: 11px;
+        }
+    }
 `
 
 export const PosterMovie = styled.section`
