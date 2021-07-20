@@ -1,5 +1,4 @@
-import React, { useState, useEffect,useCallback } from 'react'
-import { parse } from 'url';
+import React, { useState, useEffect, useCallback } from 'react'
 import {
     Container,
     MovieId,
@@ -7,6 +6,8 @@ import {
     ReleaseDate,
     DescrMovie,
     Infos,
+    Genres,
+    Percentage,
     PosterMovie,
     Trailer,
     LoadingComponent
@@ -19,7 +20,9 @@ const Movie: React.FC = () => {
     interface IMovie {
         backdrop_path: string,
         budget: number,
-        genres: [],
+        genres: [{
+            name: string
+        }],
         homepage: string,
         id: number,
         imdb_id: string,
@@ -48,6 +51,10 @@ const Movie: React.FC = () => {
     // const calcLucre = useCallback(() => {
     //     setValue(parseInt(movieDetail?.budget - movieDetail?.revenue));
     // }, [value])
+
+    // const getPercentage = useEffect((e:any => {
+    //     console.log(e)
+    // }, []);
 
     useEffect(() => {
         let id = document.URL.substring(document.URL.lastIndexOf('/') + 1);
@@ -90,8 +97,6 @@ const Movie: React.FC = () => {
                                     <span>Duração</span>
                                     <span>{movieDetail?.runtime}</span>
                                 </section>
-                                </Infos>
-                                <Infos>
                                 <section>
                                     <span>Orçamento</span>
                                     <span>$ {movieDetail?.budget}</span>
@@ -105,6 +110,15 @@ const Movie: React.FC = () => {
                                     <span>$ {parseInt('300000000')}</span>
                                 </section>
                             </Infos>
+                            <div className='genrePercentage'>
+                                <Genres>
+                                    {movieDetail?.genres.map((categ, key) => (
+                                        <li key={key}>{categ.name}</li>
+                                    ))}
+                                </Genres>
+                                {/* <Percentage>{Math.round(movieDetail?.vote_average/0.1)}%</Percentage> */}
+                                <Percentage><span>{movieDetail?.vote_average}%</span></Percentage>
+                            </div>
                         </DescrMovie>
                         <PosterMovie style={{backgroundImage: `url('https://image.tmdb.org/t/p/w500${movieDetail?.poster_path}')`}}></PosterMovie>
                     </div>

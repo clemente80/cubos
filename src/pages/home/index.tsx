@@ -13,6 +13,7 @@ import {
 
 interface IMovie {
     id: number,
+    genre_ids: [],
     poster_path: string,
     title: string,
     overview: string,
@@ -33,14 +34,27 @@ const Content: React.FC = () => {
         console.log(id)
     }, [history])
 
+    const getCategories = useCallback((a) => {
+        const urlGenres = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR'
+
+        fetch(urlGenres)
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data, a)
+        })
+    },[])
+
     const HandleSearch = (e:any) => {
         var movieName = e.target.value
 
-        const urlSrch = 'https://api.themoviedb.org/3/search/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+movieName+'&page=1&include_adult=false&year=2021';
+        const urlSrch = 'https://api.themoviedb.org/3/search/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+movieName+'&page=1&include_adult=false';
+
+        // const urlSrch = 'https://api.themoviedb.org/3/search/multi?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+movieName+'t&page=1&include_adult=false';
 
         fetch(urlSrch)
         .then(resp => resp.json())
         .then(data1 => {
+            console.log(data1)
             if (data1.results !== undefined) {
                 setDataMovie(data1.results)
             }
@@ -84,8 +98,8 @@ const Content: React.FC = () => {
     return(
         <ContentSearch>
             <InputSearch placeholder='Busque um filme por nome, ano ou gênero...' onChange={HandleSearch}/>
-            {dataMovie.map(myMovie => (
-                <CardSearched key={myMovie.id} theme={theme} onClick={() => HandleOpenMovie(myMovie.id)}>
+            {dataMovie.map((myMovie, key) => (
+                <CardSearched key={key} theme={theme} onClick={() => HandleOpenMovie(myMovie.id)}>
                     <PoserCard>
                         <div style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${myMovie.poster_path})`}}></div>
                     </PoserCard>
@@ -97,9 +111,10 @@ const Content: React.FC = () => {
                             <div className='synopsisMovie'>{myMovie.overview}
                             </div>
                             <div className='categoriesMovie'>
-                                <li>Action</li>
-                                <li>Fiction</li>
-                                <li>Adventure</li>
+                                {myMovie.genre_ids.map((categ, key) => (
+                                    // <li key={key}>{() => getCategories(categ)}</li>
+                                    <li key={key}>{categ}</li>
+                                ))}
                             </div>
                         </SynopsisCard>
                     </DescriptionCard>
