@@ -18,3 +18,5 @@ yarn start
 ```
 
 ### Abrir http://localhost:3000 para ver resultado.
+
+![image](https://user-images.githubusercontent.com/70956778/126246539-6830c434-5197-4345-a574-603fe26067fc.png)
