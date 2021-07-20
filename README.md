@@ -1,7 +1,7 @@
-## ** Antes de executar o projeto, por gentileza digitar o código no terminal:
+## Antes de executar o projeto, por gentileza digitar o código no terminal:
 ```
-##### * yarn
-##### * yarn start
+yarn
+yarn start
 ```
 
 ### Caso ocorrer um problema de erro, irá receber uma mensagem:
@@ -11,10 +11,10 @@ _**"warning package-lock.json found. Your project contains lock files generated 
 
 ### Últimos passos, agora vá no terminal novamente e escrever:
 ```
-#### yarn remove react
-#### yarn add react
-#### yarn
-#### yarn start
+yarn remove react
+yarn add react
+yarn
+yarn start
 ```
 
 ### Abrir http://localhost:3000 para ver resultado.
