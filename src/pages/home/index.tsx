@@ -34,15 +34,15 @@ const Content: React.FC = () => {
         console.log(id)
     }, [history])
 
-    const getCategories = useCallback((a) => {
-        const urlGenres = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR'
+    // const getCategories = useCallback((a) => {
+    //     const urlGenres = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR'
 
-        fetch(urlGenres)
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data, a)
-        })
-    },[])
+    //     fetch(urlGenres)
+    //     .then(resp => resp.json())
+    //     .then(data => {
+    //         console.log(data, a)
+    //     })
+    // },[])
 
     const HandleSearch = (e:any) => {
         var movieName = e.target.value
@@ -59,6 +59,7 @@ const Content: React.FC = () => {
                 setDataMovie(data1.results)
             }
         })
+        .catch(err => console.error(err))
     };
 
     const url = 'https://api.themoviedb.org/3/discover/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2021&with_watch_monetization_types=flatrate'

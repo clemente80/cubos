@@ -75,12 +75,13 @@ export const DescrMovie = styled.section`
 
 export var Infos = styled.div`
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
 
     section {
         display: flex;
         flex-direction: column;
-        width: 33.33%;
+        // width: 33.33%;
         // font-size: 7px;
 
         span:first-child {

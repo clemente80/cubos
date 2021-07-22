@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Container,
     MovieId,
@@ -70,6 +70,11 @@ const Movie: React.FC = () => {
 
     }, [])
 
+    function toFixedReplaces(num:any) {
+        let aux = '$ ' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+        return aux.replace(/[,]/g, 'X').replace(".", ",").replace(/[X]/g, ".");
+    }
+
     return (
         <Container>
             {!loading?
@@ -99,15 +104,15 @@ const Movie: React.FC = () => {
                                 </section>
                                 <section>
                                     <span>Orçamento</span>
-                                    <span>$ {movieDetail?.budget}</span>
+                                    <span>{toFixedReplaces(movieDetail?.budget)}</span>
                                 </section>
                                 <section>
                                     <span>Receita</span>
-                                    <span>$ {movieDetail?.revenue}</span>
+                                    <span>{toFixedReplaces(movieDetail?.revenue)}</span>
                                 </section>
                                 <section>
                                     <span>Lucro</span>
-                                    <span>$ {parseInt('300000000')}</span>
+                                    <span>{toFixedReplaces(movieDetail!.budget - movieDetail!.revenue)}</span>
                                 </section>
                             </Infos>
                             <div className='genrePercentage'>
@@ -116,8 +121,8 @@ const Movie: React.FC = () => {
                                         <li key={key}>{categ.name}</li>
                                     ))}
                                 </Genres>
-                                {/* <Percentage>{Math.round(movieDetail?.vote_average/0.1)}%</Percentage> */}
-                                <Percentage><span>{movieDetail?.vote_average}%</span></Percentage>
+                                <Percentage><span>{Math.round(movieDetail!.vote_average/0.1)}%</span></Percentage>
+                                {/* <Percentage><span>{movieDetail?.vote_average}%</span></Percentage> */}
                             </div>
                         </DescrMovie>
                         <PosterMovie style={{backgroundImage: `url('https://image.tmdb.org/t/p/w500${movieDetail?.poster_path}')`}}></PosterMovie>
