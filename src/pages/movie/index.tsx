@@ -48,14 +48,6 @@ const Movie: React.FC = () => {
     const [loading, setLoading] = useState(true);
     // const [value, setValue] = useState(Number);
 
-    // const calcLucre = useCallback(() => {
-    //     setValue(parseInt(movieDetail?.budget - movieDetail?.revenue));
-    // }, [value])
-
-    // const getPercentage = useEffect((e:any => {
-    //     console.log(e)
-    // }, []);
-
     useEffect(() => {
         let id = document.URL.substring(document.URL.lastIndexOf('/') + 1);
         let url = 'https://api.themoviedb.org/3/movie/'+id+'?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR'
@@ -69,11 +61,6 @@ const Movie: React.FC = () => {
         })
 
     }, [])
-
-    // function toFixedReplaces(num:any) {
-    //     let aux = '$ ' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-    //     return aux.replace(/[,]/g, 'X').replace(".", ",").replace(/[X]/g, ".");
-    // }
 
     return (
         <Container>
@@ -122,7 +109,6 @@ const Movie: React.FC = () => {
                                     ))}
                                 </Genres>
                                 <Percentage><span>{Math.round(movieDetail!.vote_average/0.1)}%</span></Percentage>
-                                {/* <Percentage><span>{movieDetail?.vote_average}%</span></Percentage> */}
                             </div>
                         </DescrMovie>
                         <PosterMovie style={{backgroundImage: `url('https://image.tmdb.org/t/p/w500${movieDetail?.poster_path}')`}}></PosterMovie>
