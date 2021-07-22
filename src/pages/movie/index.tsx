@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { toFixedReplaces } from '../../utils/numberFormat';
 import {
     Container,
     MovieId,
@@ -13,7 +14,6 @@ import {
     LoadingComponent
 } from './styles'
 // import LoadingComponent from './.../../../../components/loading'
-// import useToast
 
 const Movie: React.FC = () => {
 
@@ -70,10 +70,10 @@ const Movie: React.FC = () => {
 
     }, [])
 
-    function toFixedReplaces(num:any) {
-        let aux = '$ ' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-        return aux.replace(/[,]/g, 'X').replace(".", ",").replace(/[X]/g, ".");
-    }
+    // function toFixedReplaces(num:any) {
+    //     let aux = '$ ' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    //     return aux.replace(/[,]/g, 'X').replace(".", ",").replace(/[X]/g, ".");
+    // }
 
     return (
         <Container>
