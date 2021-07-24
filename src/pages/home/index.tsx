@@ -24,6 +24,7 @@ interface IMovie {
 const Content: React.FC = () => {
 
     const [dataMovie, setDataMovie] = useState<IMovie[]>([])
+    // const [numToGenre, setNumToGenre] = useState();
     const history = useHistory()
 
     const HandleOpenMovie = useCallback((id) => {
@@ -33,16 +34,6 @@ const Content: React.FC = () => {
         });
         console.log(id)
     }, [history])
-
-    // const getCategories = useCallback((a) => {
-    //     const urlGenres = 'https://api.themoviedb.org/3/genre/movie/list?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR'
-
-    //     fetch(urlGenres)
-    //     .then(resp => resp.json())
-    //     .then(data => {
-    //         console.log(data, a)
-    //     })
-    // },[])
 
     const HandleSearch = (e:any) => {
         var movieName = e.target.value
@@ -87,14 +78,35 @@ const Content: React.FC = () => {
         .catch(err => console.error(err))
     }, []);
 
-    // function percentage(vote:any) {
-    //     let x = Math.round((vote * 1)/10);     
-    // }
-
     const theme = {
         fg: "palevioletred",
         bg: "white"
     };
+
+    function searchGenres(num:any) {
+        let genre;
+
+        if(num === 12) genre='Aventura'
+        if(num === 14) genre='Fantasia'
+        if(num === 16) genre='Animação'
+        if(num === 18) genre='Drama'
+        if(num === 27) genre='Terror'
+        if(num === 28) genre='Ação'
+        if(num === 35) genre='Comédia'
+        if(num === 36) genre='História'
+        if(num === 37) genre='Faroeste'
+        if(num === 53) genre='Thriller'
+        if(num === 80) genre='Crime'
+        if(num === 99) genre='Documentário'
+        if(num === 878) genre='Ficção Científica'
+        if(num === 9648) genre='Mistério'
+        if(num === 10402) genre='Música'
+        if(num === 10749) genre='Romance'
+        if(num === 10751) genre='Família'
+        if(num === 10752) genre='Guerra'
+
+        return genre
+    }
 
     return(
         <ContentSearch>
@@ -114,7 +126,8 @@ const Content: React.FC = () => {
                             <div className='categoriesMovie'>
                                 {myMovie.genre_ids.map((categ, key) => (
                                     // <li key={key}>{() => getCategories(categ)}</li>
-                                    <li key={key}>{categ}</li>
+                                    <li key={key}>{searchGenres(categ)}</li>
+                                    // <li key={key}>{categ}</li>
                                 ))}
                             </div>
                         </SynopsisCard>

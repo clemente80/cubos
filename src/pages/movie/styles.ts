@@ -26,7 +26,7 @@ export const MovieId = styled.div`
 
     .contentMovie {
         display: flex;
-        height: fit-content;
+        height: 508px;
         justify-content: space-between;
 
 
@@ -47,7 +47,7 @@ export const ReleaseDate = styled.div`
 `
 
 export const DescrMovie = styled.section`
-    flex: .6;
+    flex: .65;
     padding: 30px;
     heigth: fit-content;
     display: flex;
@@ -142,12 +142,12 @@ export const Percentage = styled.div`
 `
 
 export const PosterMovie = styled.section`
-    flex: .4;
-    height: 508px;
-    background-size: cover;
+    flex: .35;
+    background-size: contain;
+    background-repeat: no-repeat;
 `
 
-export const Trailer = styled.div`
+export const ReactPlayer = styled.div`
     height: 500px;
     background: #000;
     margin-top: 50px;

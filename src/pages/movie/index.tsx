@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useCallback } from 'react';
 import { toFixedReplaces } from '../../utils/numberFormat';
 import {
     Container,
@@ -10,9 +11,10 @@ import {
     Genres,
     Percentage,
     PosterMovie,
-    Trailer,
     LoadingComponent
 } from './styles'
+import ReactPlayer from 'react-player'
+
 // import LoadingComponent from './.../../../../components/loading'
 
 const Movie: React.FC = () => {
@@ -46,7 +48,6 @@ const Movie: React.FC = () => {
 
     const [movieDetail, setMovieDetail] = useState<IMovie>();
     const [loading, setLoading] = useState(true);
-    // const [value, setValue] = useState(Number);
 
     useEffect(() => {
         let id = document.URL.substring(document.URL.lastIndexOf('/') + 1);
@@ -61,6 +62,27 @@ const Movie: React.FC = () => {
         })
 
     }, [])
+
+    function swapStatus(getStatus:any) {
+        let newStatus;
+
+        if(getStatus === 'Released') newStatus ='Lançado'
+
+        return newStatus
+    }
+
+    function swapLang(idiom:any) {
+        let xch;
+
+        if(idiom === 'en') xch ='Inglês'
+        if(idiom === 'pt') xch ='Português'
+        if(idiom === 'es') xch ='Espanhol'
+        if(idiom === 'fr') xch ='Francês'
+        if(idiom === 'de') xch ='Alemão'
+        if(idiom === 'es') xch ='Espanhol'
+
+        return xch
+    }
 
     return (
         <Container>
@@ -79,11 +101,11 @@ const Movie: React.FC = () => {
                             <Infos>
                                 <section>
                                     <span>Situação</span>
-                                    <span>{movieDetail?.status}</span>
+                                    <span>{swapStatus(movieDetail?.status)}</span>
                                 </section>
                                 <section>
                                     <span>Idioma</span>
-                                    <span>{movieDetail?.original_language}</span>
+                                    <span>{swapLang(movieDetail?.original_language)}</span>
                                 </section>
                                 <section>
                                     <span>Duração</span>
@@ -114,7 +136,15 @@ const Movie: React.FC = () => {
                         <PosterMovie style={{backgroundImage: `url('https://image.tmdb.org/t/p/w500${movieDetail?.poster_path}')`}}></PosterMovie>
                     </div>
                 </MovieId>
-                <Trailer />
+                <ReactPlayer
+                    className='player'
+                    url= {[ 'https://www.youtube.com/watch?v=atHBOUvgBI8']}
+                    width= '100%'
+                    height= '600px'
+                    playing= {false}
+                    loop= {true}
+                    style={{marginTop:'50px'}}
+                />
                 </>
                 :
                 <LoadingComponent/>
