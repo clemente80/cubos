@@ -9,6 +9,10 @@ import {
         TitleCard,
         SynopsisCard
 } from './styles'
+
+// import { format } from 'date-fns';
+
+import { pagination } from './../../components/footer/index'
 // import Moment from 'react-moment'
 
 interface IMovie {
@@ -24,18 +28,18 @@ interface IMovie {
 const Content: React.FC = () => {
 
     const [dataMovie, setDataMovie] = useState<IMovie[]>([])
-    // const [numToGenre, setNumToGenre] = useState();
     const history = useHistory()
 
-    const HandleOpenMovie = useCallback((id) => {
+    const handleOpenMovie = useCallback((id) => {
         history.push({
             pathname: `/filme/${id}`,
             state: id
         });
     }, [history])
 
-    const HandleSearch = (e:any) => {
+    const handleSearch = (e:any) => {
         var movieName = e.target.value
+        pagination(movieName)
 
         const urlSrch = 'https://api.themoviedb.org/3/search/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+movieName+'&page=1&include_adult=false';
 
@@ -55,7 +59,6 @@ const Content: React.FC = () => {
         fetch(url)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setDataMovie(data.results)
         })
         .catch(err => console.error(err))
@@ -93,24 +96,22 @@ const Content: React.FC = () => {
 
     return(
         <ContentSearch>
-            <InputSearch placeholder='Busque um filme por nome, ano ou gênero...' onChange={HandleSearch}/>
+            <InputSearch placeholder='Busque um filme por nome, ano ou gênero...' onChange={handleSearch}/>
             {dataMovie.map((myMovie, key) => (
-                <CardSearched key={key} theme={theme} onClick={() => HandleOpenMovie(myMovie.id)}>
+                <CardSearched key={key} theme={theme} onClick={() => handleOpenMovie(myMovie.id)}>
                     <PoserCard>
                         <div style={{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${myMovie.poster_path})`}}></div>
                     </PoserCard>
                     <DescriptionCard>
                         <TitleCard><span>{myMovie.title}</span><span>{Math.round(myMovie.vote_average/0.1)}%</span></TitleCard>
                         <SynopsisCard>
-                            {/* <Moment>{myMovie.release_date}</Moment> */}
+                            {/* <div className='dateRelease'>{format(new Date(myMovie.release_date), 'dd/MM/yyyy')}</div> */}
                             <div className='dateRelease'>{myMovie.release_date}</div>
                             <div className='synopsisMovie'>{myMovie.overview}
                             </div>
                             <div className='categoriesMovie'>
                                 {myMovie.genre_ids.map((categ, key) => (
-                                    // <li key={key}>{() => getCategories(categ)}</li>
                                     <li key={key}>{searchGenres(categ)}</li>
-                                    // <li key={key}>{categ}</li>
                                 ))}
                             </div>
                         </SynopsisCard>
