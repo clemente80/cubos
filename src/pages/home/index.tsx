@@ -32,7 +32,6 @@ const Content: React.FC = () => {
             pathname: `/filme/${id}`,
             state: id
         });
-        console.log(id)
     }, [history])
 
     const HandleSearch = (e:any) => {
@@ -40,12 +39,9 @@ const Content: React.FC = () => {
 
         const urlSrch = 'https://api.themoviedb.org/3/search/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+movieName+'&page=1&include_adult=false';
 
-        // const urlSrch = 'https://api.themoviedb.org/3/search/multi?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+movieName+'t&page=1&include_adult=false';
-
         fetch(urlSrch)
         .then(resp => resp.json())
         .then(data1 => {
-            console.log(data1)
             if (data1.results !== undefined) {
                 setDataMovie(data1.results)
             }
@@ -59,21 +55,8 @@ const Content: React.FC = () => {
         fetch(url)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             setDataMovie(data.results)
-
-            // var objLength = Object.keys(data).length;
-
-            // for(var i=0; objLength; i++) {
-            //     const url2 = 'https://api.themoviedb.org/3/movie/'+data.results[i].id+'?api_key=6d27b243520c3d8bd2325f2289b0cf7d';
-                
-            //     fetch(url2)
-            //     .then(resp => resp.json())
-            //     .then(data1 => {
-            //         setDataCateg(data1)
-            //         // console.log(data1)
-            //     })
-            // }
-
         })
         .catch(err => console.error(err))
     }, []);

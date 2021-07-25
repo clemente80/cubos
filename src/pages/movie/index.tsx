@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useCallback } from 'react';
+// import { useCallback } from 'react';
 import { toFixedReplaces } from '../../utils/numberFormat';
 import {
     Container,
@@ -41,7 +41,9 @@ const Movie: React.FC = () => {
         tagline: string,
         title: string,
         video: false,
-        videos: [],
+        videos: {results: [{
+            key: string
+        }]},
         vote_average: number,
         vote_count: number
     }
@@ -51,12 +53,11 @@ const Movie: React.FC = () => {
 
     useEffect(() => {
         let id = document.URL.substring(document.URL.lastIndexOf('/') + 1);
-        let url = 'https://api.themoviedb.org/3/movie/'+id+'?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR'
+        let url = 'https://api.themoviedb.org/3/movie/'+id+'?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&append_to_response=videos'
         
         fetch(url)
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
             setMovieDetail(data)
             setLoading(false)
         })
@@ -135,16 +136,16 @@ const Movie: React.FC = () => {
                         </DescrMovie>
                         <PosterMovie style={{backgroundImage: `url('https://image.tmdb.org/t/p/w500${movieDetail?.poster_path}')`}}></PosterMovie>
                     </div>
-                </MovieId>
-                <ReactPlayer
-                    className='player'
-                    url= {[ 'https://www.youtube.com/watch?v=atHBOUvgBI8']}
-                    width= '100%'
-                    height= '600px'
-                    playing= {false}
-                    loop= {true}
-                    style={{marginTop:'50px'}}
-                />
+                </MovieId>             
+                    <ReactPlayer
+                        className='player'
+                        url= {'https://www.youtube.com/watch?v='+ movieDetail!.videos.results[0].key}
+                        width= '100%'
+                        height= '600px'
+                        playing= {true}
+                        loop= {true}
+                        style={{marginTop:'50px'}}
+                    />
                 </>
                 :
                 <LoadingComponent/>

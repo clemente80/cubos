@@ -6,7 +6,6 @@ export const Container = styled.div`
     padding: 50px 0;
     max-width: 1024px;
     width: 100%;
-    height: fit-content;
     box-sizing: border-box;
 `
 
