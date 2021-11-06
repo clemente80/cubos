@@ -19,4 +19,6 @@ yarn start
 
 ### Abrir http://localhost:3000 para ver resultado.
 
-![image](https://user-images.githubusercontent.com/70956778/126246539-6830c434-5197-4345-a574-603fe26067fc.png)
+![image](https://user-images.githubusercontent.com/70956778/126886204-845f20b1-f42b-43cf-81ff-506955a8e764.png)
+![WhatsApp Image 2021-07-24 at 23 55 14](https://user-images.githubusercontent.com/70956778/126886228-93513755-5f08-4e7d-abff-38b850e9e531.jpeg)
+
