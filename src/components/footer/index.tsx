@@ -1,34 +1,19 @@
 import React from 'react'
 import {FooterPages} from './styles'
 
-export const pagination = (name:any) => {
-    console.log(name);
-}
+// var $nameMovie = ''
+// var $numOfPag = 0
 
-const Footer:React.FC = () => {
-    var nameMovie = pagination((e:any) => e)
+// export const pagination = (name:any, data:any) => {
+//     $nameMovie = name
+//     $numOfPag = data
+//     console.log($nameMovie, $numOfPag)
+// }
 
-    const handlePage = (pag:any) => {
 
-        const url = 'https://api.themoviedb.org/3/search/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+nameMovie+'&page='+pag+'&include_adult=false';
-
-            fetch(url)
-            .then(res => res.json())
-            .then(page => {
-                console.log('Page '+pag+':', page, ' - do filme: ', nameMovie);
-            })
-
-    }
-
-    
+const Footer:React.FC = () => {    
     return(
-        <FooterPages>
-            <li className='active' onClick={() => handlePage(1)}>1</li>
-            <li onClick={() => handlePage(2)}>2</li>
-            <li onClick={() => handlePage(3)}>3</li>
-            <li onClick={() => handlePage(4)}>4</li>
-            <li onClick={() => handlePage(5)}>5</li>
-        </FooterPages>
+        <FooterPages/>
     )
 }
 

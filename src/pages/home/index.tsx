@@ -7,12 +7,13 @@ import {
         DescriptionCard,
         PoserCard,
         TitleCard,
-        SynopsisCard
+        SynopsisCard,
+        Pagination
 } from './styles'
 
 // import { format } from 'date-fns';
 
-import { pagination } from './../../components/footer/index'
+// import { pagination } from './../../components/footer/index'
 // import Moment from 'react-moment'
 
 interface IMovie {
@@ -27,8 +28,11 @@ interface IMovie {
 
 const Content: React.FC = () => {
 
-    const [dataMovie, setDataMovie] = useState<IMovie[]>([])
-    const history = useHistory()
+    const [dataMovie, setDataMovie] = useState<IMovie[]>([]);
+    const [numPag, setNumPag] = useState(Number);
+    const [movieName, setMovieName] = useState(String);
+    const history = useHistory();
+    let $movieName = ''
 
     const handleOpenMovie = useCallback((id) => {
         history.push({
@@ -38,14 +42,19 @@ const Content: React.FC = () => {
     }, [history])
 
     const handleSearch = (e:any) => {
-        var movieName = e.target.value
-        pagination(movieName)
+        setMovieName(e.target.value);
+        $movieName = e.target.value;
 
-        const urlSrch = 'https://api.themoviedb.org/3/search/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+movieName+'&page=1&include_adult=false';
+        const urlSrch = 'https://api.themoviedb.org/3/search/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+$movieName+'&page=1&include_adult=false';
 
         fetch(urlSrch)
         .then(resp => resp.json())
         .then(data1 => {
+
+            setNumPag(data1.total_pages)
+            
+            // pagination(movieName, data1.total_pages)
+
             if (data1.results !== undefined) {
                 setDataMovie(data1.results)
             }
@@ -94,6 +103,44 @@ const Content: React.FC = () => {
         return genre
     }
 
+    const handlePage = (pag:any) => {
+
+        var pg = document.getElementsByClassName('btn'+pag);
+        // var pagination = document.getElementById('Pagination');
+        // var pgCurrent = pagination?.getElementsByClassName('active');
+        // pgCurrent!.replace('active', '');
+        pg[0].className = ' active';
+
+        const url = 'https://api.themoviedb.org/3/search/movie?api_key=6d27b243520c3d8bd2325f2289b0cf7d&language=pt-BR&query='+movieName+'&page='+pag+'&include_adult=false';
+
+            fetch(url)
+            .then(res => res.json())
+            .then(page => {
+                console.log(page);
+                console.log('Page '+pag+':', page, ' - do filme: ', );
+            })
+
+    }
+
+    const numberPagination = (() => {
+        
+        const row = [];
+        // const line:any;
+        if(numPag >= 5) {
+            for (var p = 1; p <= 3 ; p++) {
+                row.push(<li className={'btn'+p} onClick={p => handlePage(p)}>{p}</li>);
+            }
+            // line.push(<li> prox </li><li className='btnLast' onClick={numPag => handlePage(numPag)}>{numPag}</li>);
+            return row
+        } else if(numPag !== 0) {
+            for (var i=1; i <= 5; i++) {
+                return row.push(<li className={'btn'+i} onClick={(i) => handlePage(i)}>{i}</li>)
+            }
+        } else {
+            return row.push(<li>1</li>)
+        }
+    })
+
     return(
         <ContentSearch>
             <InputSearch placeholder='Busque um filme por nome, ano ou gênero...' onChange={handleSearch}/>
@@ -105,6 +152,7 @@ const Content: React.FC = () => {
                     <DescriptionCard>
                         <TitleCard><span>{myMovie.title}</span><span>{Math.round(myMovie.vote_average/0.1)}%</span></TitleCard>
                         <SynopsisCard>
+                            {/* <Moment format="DD/MM/YYYY">{myMovie.release_date}</Moment> */}
                             {/* <div className='dateRelease'>{format(new Date(myMovie.release_date), 'dd/MM/yyyy')}</div> */}
                             <div className='dateRelease'>{myMovie.release_date}</div>
                             <div className='synopsisMovie'>{myMovie.overview}
@@ -118,6 +166,9 @@ const Content: React.FC = () => {
                     </DescriptionCard>
                 </CardSearched>
             ))}
+            <Pagination>
+                {numberPagination()}
+            </Pagination>
         </ContentSearch>
     )
 }

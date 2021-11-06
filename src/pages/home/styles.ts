@@ -17,17 +17,23 @@ export const InputSearch = styled.input`
   background: #ebebeb;
   position: relative;
   width: 100%;
-  border: 0;
+  border: 1px solid transparent;
   border-radius: 20px;
   color: #116193;
   padding: 10px 20px;
   box-sizing: border-box;
   font-family: 'Abel', sans-serif;
   font-size: 18px;
+  transition: .25s ease-in-out;
   outline: none;
 
   ::placeholder {
     color: #91b2c7;
+  }
+
+  :hover {
+    border-color: #fff;
+    box-shadow: 0 3px 15px rgba(17, 97, 147, .35);
   }
 `
 
@@ -38,11 +44,15 @@ export const CardSearched = styled.section`
   margin-top: 50px;
   display: flex;
   cursor: pointer;
-  transition: .4s ease-in-out;
+  transition: .25s ease-in-out;
   animation: animeCard .24s;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
 
   :hover {
     box-shadow: 0 5px 15px rgba(17, 97, 147, .35);
+    border-color: #fff;
   }
 
   @keyframes animeCard {
@@ -82,7 +92,7 @@ export const PoserCard = styled.div`
 export const DescriptionCard = styled.div`
   background: #ebebeb;
   width: 78%;
-  heigth: 100%;
+  height: 100%;
   overflow: hidden;
 `
 
@@ -98,7 +108,7 @@ export const TitleCard = styled.div`
     position: absolute;
     bottom: 5px;
     left: 100px;
-    width: fit-content:
+    width: fit-content;
     height: fit-content;
     font-size: 35px;
   }
@@ -181,4 +191,68 @@ export const SynopsisCard = styled.div`
       color: #116193;
     }
   }
+`
+
+export const Pagination = styled.div`
+    background: #fff;
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    
+
+    li {
+        list-style: none;
+        font-family: 'Abel';
+        color: #116193;
+        margin-right: 5px;
+        font-size: 22px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        transition: .2s ease-in-out;
+
+        :hover {
+            background: #ebebeb;
+        }
+    }
+
+    .active {
+        position: relative;
+        width: 55px;
+        height: 55px;
+        font-size: 26px;
+        background: #116193;
+        color: #00e8e4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: default;
+
+        :after {
+            content: '';
+            position: absolute;
+            width: 75%;
+            height: 75%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: transparent;
+            border: 4px solid #00e8e4;
+            border-radius: 50%;
+        }
+
+        :hover {
+            background: #116193;
+        }
+    }
 `

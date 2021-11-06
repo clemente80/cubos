@@ -1,0 +1,7 @@
+OK - faz uma função para categorias
+OK - cria uma função para situação
+OK - cria uma array para trocar a lingua
+OK - montar um youtube como fiz no freebuster
+- transformar a data em formato em datas nacionais
+- estilizar todas paginas com responsive
+- desenvolver números de paginas como paginação
